@@ -90,7 +90,7 @@ public class PDI_Lote extends javax.swing.JFrame {
                 ImagemOriginalActionPerformed(evt);
             }
         });
-        String caminho = "C:\\Users\\welle\\Desktop\\PDI\\Trabalho\\PastaAvulso\\PastaAvulso";
+        String caminho = "C:\\Users\\welle\\Documents\\GitHub\\PDI-FaceDetection\\Entrada";
         CaminhoImagemOriginal.setText(caminho);
         CaminhoSaidaImagem.setEditable(false);
         CaminhoSaidaImagem.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class PDI_Lote extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Escolha a Pasta de Saida");
-        String saida = "C:\\Users\\welle\\Desktop\\PDI\\Trabalho\\Saida";
+        String saida = "C:\\Users\\welle\\Documents\\GitHub\\PDI-FaceDetection\\Saida";
         CaminhoSaidaImagem.setText(saida);
 
         SaidaImagem.setText("Escolher a Pasta");
