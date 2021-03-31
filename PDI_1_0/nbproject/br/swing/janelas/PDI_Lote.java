@@ -90,7 +90,8 @@ public class PDI_Lote extends javax.swing.JFrame {
                 ImagemOriginalActionPerformed(evt);
             }
         });
-
+        String caminho = "C:\\Users\\welle\\Desktop\\PDI\\Trabalho\\PastaAvulso\\PastaAvulso";
+        CaminhoImagemOriginal.setText(caminho);
         CaminhoSaidaImagem.setEditable(false);
         CaminhoSaidaImagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +100,8 @@ public class PDI_Lote extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Escolha a Pasta de Saida");
+        String saida = "C:\\Users\\welle\\Desktop\\PDI\\Trabalho\\Saida";
+        CaminhoSaidaImagem.setText(saida);
 
         SaidaImagem.setText("Escolher a Pasta");
         SaidaImagem.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +112,8 @@ public class PDI_Lote extends javax.swing.JFrame {
 
         jLabel5.setText("Qual (s):");
 
-        tecnica01.setText("Equalização por Bi-Histograma");
+        tecnica01.setText("Equalizaï¿½ï¿½o por Bi-Histograma");
+        tecnica01.setSelected(true);
         tecnica01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tecnica01ActionPerformed(evt);
@@ -219,29 +223,29 @@ public class PDI_Lote extends javax.swing.JFrame {
                 //NOME DAS IMAGENS SELECIONADAS PARA PROCESSAMENTO
                 pastaSalvar = CaminhoSaidaImagem.getText();
                 pathsOriginal = fileOriginal.listFiles();
-                //FILE SEPARATOR: CORRESPONDENTE A SEPARAÇÃO DE PASTA DO SISTEMA OPERACIONAL UTILIZADO
+                //FILE SEPARATOR: CORRESPONDENTE A SEPARAï¿½ï¿½O DE PASTA DO SISTEMA OPERACIONAL UTILIZADO
                 //EXEMPLO: WINDOWS (\\) , LINUX E MAC (//)
                 pastaSalvar += File.separator;
 
                 if (!Paths.get(pastaSalvar).toFile().exists()) {
                     (new File(pastaSalvar)).mkdir();
                 }
-                //EXEMPLO DE TÉCNICA QUE PRECISA DE UM PARAMETRO DE ENTRADA....
+                //EXEMPLO DE Tï¿½CNICA QUE PRECISA DE UM PARAMETRO DE ENTRADA....
                 if (tecnica01.isSelected()) {
                     for (File pathtecnica01 : pathsOriginal) {
                         String imagevariavelK = pathtecnica01.getName();
-                        //DIVISAO DO NOME DA IMAGEM SEM SUA EXTENSÃO PARA COMPARÇÃO FUTURA
+                        //DIVISAO DO NOME DA IMAGEM SEM SUA EXTENSï¿½O PARA COMPARï¿½ï¿½O FUTURA
                         imagevariavelK = imagevariavelK.substring(0, (imagevariavelK.length() - 4));
                         BufferedImage imgvariavelK = ImageIO.read(pathtecnica01);
                         //Cria imagem resultante
                         BufferedImage resvariavelK, outvariavelK = new BufferedImage(imgvariavelK.getWidth(), imgvariavelK.getHeight(), imgvariavelK.getType());
                         //CRIA OBJETO DA CLASSE 
-                        //Neste exemplo, utiliza-se a técnica que está na classe Greeness
+                        //Neste exemplo, utiliza-se a tï¿½cnica que estï¿½ na classe Greeness
                         Greenness WA = new Greenness();
                         //IMAGEM RESULTANTE DA FORMULA
                         // ----- APLICACAO DA TECNICA -------
                         resvariavelK = WA.GreennKG(imgvariavelK);
-                        //Nome que vai no nome do arquivo para identificar técnica.
+                        //Nome que vai no nome do arquivo para identificar tï¿½cnica.
                         Nome = "_BHE2PL";
                         //SAIDA CONTENDO CAMINHO DA IMAGEM + NOME DA IMAGEM
                         String aSaida = pastaSalvar + imagevariavelK + Nome + ".png";
