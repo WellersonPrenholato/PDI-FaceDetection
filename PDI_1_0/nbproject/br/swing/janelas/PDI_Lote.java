@@ -246,7 +246,7 @@ public class PDI_Lote extends javax.swing.JFrame {
                         // ----- APLICACAO DA TECNICA -------
                         resvariavelK = WA.GreennKG(imgvariavelK);
                         //Nome que vai no nome do arquivo para identificar t�cnica.
-                        Nome = "_IASDinCI";
+                        Nome = "__RGBYCrCb";
                         //SAIDA CONTENDO CAMINHO DA IMAGEM + NOME DA IMAGEM
                         String aSaida = pastaSalvar + imagevariavelK + Nome + ".png";
                         File outputFile = new File(aSaida);
