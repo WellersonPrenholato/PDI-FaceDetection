@@ -69,7 +69,6 @@ public class Greenness {
 			}
 		}
 
-
 		for (int i = 0; i < img.getWidth(); i++) { 
 			for (int j = 0; j < img.getHeight(); j++) {
 				Color cor = new Color(img.getRGB(i, j)); //Identifica a cor na posição ij
@@ -107,7 +106,7 @@ public class Greenness {
 		esforço de computação, aplicamos um filtro inicial que pode remover todos os pixels facilmente
 		rotulado como sem pele. Este filtro visa apenas remover pixels de processamento posterior e, 
 		com sorte, os pixels da capa não são removidos. Verde, azul, amarelo e outros bem
-		cores definidas são eliminadas usando regras empíricas definido no condicional nas linhas 121 à 129.
+		cores definidas são eliminadas usando regras empíricas definido no condicional nas linhas 120 à 128.
 		*/
 		for (int i = 0; i < res.getWidth(); i++) {
 			for (int j = 0; j < res.getHeight(); j++) {
