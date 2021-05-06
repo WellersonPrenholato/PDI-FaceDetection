@@ -15,7 +15,6 @@ import swing.janelas.PDI_Lote;
 public class Greenness {
 
 	/**
-	 * 
 	 * @param img A imagem onde o filtro será aplicado
 	 * @param K O valor K da equação
 	 * @return retorna a imagem depois de aplicado o filtro
@@ -83,11 +82,12 @@ public class Greenness {
 				float saturation = hsbValues[1]; // Atribuição da Saturation, baseado na conversão da linha anterior.
 				float brightness = hsbValues[2]; // Atribuição da Brightness, baseado na conversão da linha anterior.
 				
-				// Normalização simples para o valor de saturação em [0; 1.0]
-				float S = (saturation - minS)/(maxS - minS); 
+				// Normalização simples para o valor de saturação em [0; 1.0].
+				float S = (saturation - minS)/(maxS - minS);
+				// Escala para o valor de matiz, com base no valor mínimo de calibração da saturação.
 				float T = (hue - minS)/(maxT - minS);
 
-				int hsbToRgb = Color.HSBtoRGB(T, S, brightness);
+				int hsbToRgb = Color.HSBtoRGB(T, S, brightness); //Conversão de HSB para RGB
 
 				// int red = (hsbToRgb >> 16) & 0xFF;
 				// int green = (hsbToRgb >> 8) & 0xFF;
@@ -98,7 +98,7 @@ public class Greenness {
 				// Color novoPixel = new Color(red, green, blue);
 				Color novoPixel = new Color(hsbToRgb);
 				
-				res.setRGB(i, j, novoPixel.getRGB());
+				res.setRGB(i, j, novoPixel.getRGB()); //Salva os resultados na imagem que está carregada em memória
 			}
 		}
 
@@ -107,7 +107,7 @@ public class Greenness {
 		esforço de computação, aplicamos um filtro inicial que pode remover todos os pixels facilmente
 		rotulado como sem pele. Este filtro visa apenas remover pixels de processamento posterior e, 
 		com sorte, os pixels da capa não são removidos. Verde, azul, amarelo e outros bem
-		cores definidas são eliminadas usando regras empíricas definido no condicional nas linhas 118 à 126.
+		cores definidas são eliminadas usando regras empíricas definido no condicional nas linhas 121 à 129.
 		*/
 		for (int i = 0; i < res.getWidth(); i++) {
 			for (int j = 0; j < res.getHeight(); j++) {
@@ -127,13 +127,14 @@ public class Greenness {
 					(B/(R+G+B) > .40) || // Too much blue in contrast to others
 					(G/(R+G+B) > .40) || // Too much green in contrast to others
 					(R < 102 && G > 100 && B > 110 && G < 140 && B < 160)){ // Ocean
-						res.setRGB(i, j, pixelBranco.getRGB()); // Caso o pixel não seja considerado pele, ele se tornará um pixel branco
+						// Utilizado para saltar os resultados na imagem que está em memória.
+						res.setRGB(i, j, pixelBranco.getRGB()); // Caso o pixel não seja considerado pele, ele se tornará um pixel branco.
 					}else{
+						// Utilizado para saltar os resultados na imagem que está em memória.
 						res.setRGB(i, j, img.getRGB(i, j)); // Caso o pixel seja considerado pele, o pixel da imagem é mantido.
 					}
 			}
 		}
-
 		return res;
 	}
 }
