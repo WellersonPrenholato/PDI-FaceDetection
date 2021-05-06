@@ -43,7 +43,7 @@ public class Greenness {
 				float[] hsbValues = Color.RGBtoHSB((int)R, (int)G, (int)B, null);
 				float hue = hsbValues[0]; 
 				float saturation = hsbValues[1];
-				float brightness = hsbValues[2];
+				// float brightness = hsbValues[2];
 
 				if (maxS >= saturation){
 					maxS = saturation;
@@ -71,8 +71,6 @@ public class Greenness {
 				G = cor.getGreen();
 				B = cor.getBlue();
 				
-				// System.out.println("\n1 - Red:" + R + " Verde:" + G + " Azul:" + B);
-	
 				float[] hsbValues = Color.RGBtoHSB((int)R, (int)G, (int)B, null);
 				float hue = hsbValues[0]; 
 				float saturation = hsbValues[1];
@@ -101,7 +99,6 @@ public class Greenness {
 		for (int i = 0; i < res.getWidth(); i++) {
 			for (int j = 0; j < res.getHeight(); j++) {
 				Color cor = new Color(res.getRGB(i, j));
-				// Color spaceColor = new Color(img.getColorSpace(i,j));
 				R = cor.getRed();
 				G = cor.getGreen();
 				B = cor.getBlue();
@@ -121,44 +118,14 @@ public class Greenness {
 					(R < 102 && G > 100 && B > 110 && G < 140 && B < 160)){ // Ocean
 						res.setRGB(i, j, pixelBranco.getRGB());
 					}else{
-						res.setRGB(i, j, pixelPreto.getRGB());
+						// res.setRGB(i, j, pixelPreto.getRGB());
+						res.setRGB(i, j, img.getRGB(i, j));
 					}
 
 				// System.out.println("\n Cor: " + cor);
 				// res.setRGB(i, j, novoPixel.getRGB());
 			}
 		}
-
-		// for (int i = 0; i < img.getWidth(); i++) {
-		// 	for (int j = 0; j < img.getHeight(); j++) {
-		// 		Color corImg = new Color(img.getRGB(i, j));
-		// 		Color corRes = new Color(res.getRGB(i, j));
-		// 		// Color spaceColor = new Color(img.getColorSpace(i,j));
-
-		// 		float Rimg, Gimg, Bimg;
-		// 		float Rres, Gres, Bres;
-
-		// 		Rimg = corImg.getRed();
-		// 		Gimg = corImg.getGreen();
-		// 		Bimg = corImg.getBlue();
-
-		// 		Rres = corRes.getRed();
-		// 		Gres = corRes.getGreen();
-		// 		Bres = corRes.getBlue();
-				
-		// 		// System.out.println("\n1 - Red:" + R + " Verde:" + G + " Azul:" + B);
-		// 		Color pixelPreto = new Color(0, 0, 0);
-		// 		Color pixelBranco = new Color(255, 255, 255);
-
-		// 		if (res.getRGB(i, j) == pixelPreto){
-
-		// 		}
-
-
-		// 		// System.out.println("\n Cor: " + cor);
-		// 		// res.setRGB(i, j, novoPixel.getRGB());
-		// 	}
-		// }
 
 		return res;
 	}
