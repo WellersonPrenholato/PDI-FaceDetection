@@ -8,16 +8,13 @@ import javax.swing.JOptionPane;
 import swing.janelas.PDI_Lote;
 
 /**
- * Classe para os métodos(funcoes) para o calculo do Greenness, onde serão mantidos
- * , que serao usadas pelo resto do programa.
+ * Classe para os métodos(funcoes) para o calculo do Greenness, onde serão mantidos, que serao usadas pelo resto do programa.
  * 
  * @author
  */
 public class Greenness {
 
 	/**
-	 * Essa função é a implementação da método de GreennesskG = kG − (R + B)
-	 * onde K é o valor passado pelo usuário e o R,G e B são os valores obtido da imagem
 	 * 
 	 * @param img A imagem onde o filtro será aplicado
 	 * @param K O valor K da equação
@@ -27,8 +24,8 @@ public class Greenness {
 		BufferedImage res = new BufferedImage(img.getWidth(), img.getHeight(), img.getType()); //Carregamento da imagem para res
 
 		// Declaração de variáveis
-		float R, G, B;
-		float maxS =0, minS=1;	
+		float R, G, B; //Utilizado para armazenar os valores de Red, Blue e Green de cada pixel da imagem.
+		float maxS =0, minS=1;
 		float maxT=0, minT=1;
 
 		//Hue -> Matiz
@@ -39,15 +36,16 @@ public class Greenness {
 		// O intuito é encontrar o mínimo e máximo de S(Saturation) e T(Matiz), dentro da imagem.
 		for (int i = 0; i < img.getWidth(); i++) {
 			for (int j = 0; j < img.getHeight(); j++) {
-				Color cor = new Color(img.getRGB(i, j));
-		
+				Color cor = new Color(img.getRGB(i, j)); //Identifica a cor na posição ij e desestrutura em cores RGB.
+				
+				//Acessa os valores das cores RGB existentes no pixel
 				R = cor.getRed();
 				G = cor.getGreen();
 				B = cor.getBlue();
 				
 				float[] hsbValues = Color.RGBtoHSB((int)R, (int)G, (int)B, null);  // Conversão de RGB para HSB (Hue, Saturation, Brightness)
-				float hue = hsbValues[0]; 
-				float saturation = hsbValues[1];
+				float hue = hsbValues[0]; // Atribui o valor da matiz que o pixel possui ao vetor na posição 0.
+				float saturation = hsbValues[1]; // Atribui o valor da saturação que o pixel possui ao vetor na posição 1.
 				// float brightness = hsbValues[2];
 				
 				// Condicional utilizado para encontrar o valor máximo da Saturação na imagem
@@ -85,8 +83,9 @@ public class Greenness {
 				float saturation = hsbValues[1]; // Atribuição da Saturation, baseado na conversão da linha anterior.
 				float brightness = hsbValues[2]; // Atribuição da Brightness, baseado na conversão da linha anterior.
 				
+				// Normalização simples para o valor de saturação em [0; 1.0]
 				float S = (saturation - minS)/(maxS - minS); 
-				float T = (hue - minT)/(maxT - minT);
+				float T = (hue - minS)/(maxT - minS);
 
 				int hsbToRgb = Color.HSBtoRGB(T, S, brightness);
 
