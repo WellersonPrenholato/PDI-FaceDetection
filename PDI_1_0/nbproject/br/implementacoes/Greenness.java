@@ -103,8 +103,6 @@ public class Greenness {
 				G = cor.getGreen();
 				B = cor.getBlue();
 				
-				// System.out.println("\n1 - Red:" + R + " Verde:" + G + " Azul:" + B);
-				Color pixelPreto = new Color(0, 0, 0);
 				Color pixelBranco = new Color(255, 255, 255);
 
 				if ( (B > 160 && R < 180 && G < 180) || // Too much blue
@@ -118,12 +116,8 @@ public class Greenness {
 					(R < 102 && G > 100 && B > 110 && G < 140 && B < 160)){ // Ocean
 						res.setRGB(i, j, pixelBranco.getRGB());
 					}else{
-						// res.setRGB(i, j, pixelPreto.getRGB());
 						res.setRGB(i, j, img.getRGB(i, j));
 					}
-
-				// System.out.println("\n Cor: " + cor);
-				// res.setRGB(i, j, novoPixel.getRGB());
 			}
 		}
 
